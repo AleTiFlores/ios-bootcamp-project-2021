@@ -9,38 +9,27 @@ import Foundation
 struct GetMoviesAPI {
 
     private let baseURL = "https://api.themoviedb.org/3/"
-    // https://image.tmdb.org/t/p/w185/ for images
 
-    public func performRequest(request: URLRequest) -> MoviesList? {
-        var moviesList : MoviesList? = nil
+    public func performRequest(urlString: String, completion: @escaping (MoviesList?, Error?) -> ()) {
         
-        let session = URLSession.shared
-        session.dataTask(with: request) { (sessionData, sessionResponse, error) in
-            guard let response = sessionResponse,
-                  let data = sessionData
-            else { return }
+        guard let url = URL(string: baseURL + urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (sessionData, sessionResponse, error) in
+            
+            if let errorFound = error {
+                completion(nil, errorFound)
+                return
+            }
+            
+            guard let data = sessionData else { return }
             
             do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                moviesList = parseJSON(movieData: data)
-            } catch {
-                print(error)
+                let moviesList = try JSONDecoder().decode(MoviesList.self, from: data)
+                completion(moviesList, nil)
+            } catch let jsonError {
+                completion(nil, jsonError)
             }
+
         }.resume()
-        
-        return moviesList
-    }
-    
-    func parseJSON(movieData: Data) -> MoviesList? {
-        let decoder = JSONDecoder()
-        var decodedData : MoviesList? = nil
-        
-        do {
-            decodedData = try decoder.decode(MoviesList.self, from: movieData)
-            print(decodedData?.results[0].title)
-        } catch {
-            print(error)
-        }
-        return decodedData
     }
 }

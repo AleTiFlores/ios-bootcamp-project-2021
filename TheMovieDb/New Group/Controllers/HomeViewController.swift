@@ -5,36 +5,55 @@
 //  Created by Jose Antonio Trejo Flores on 09/12/20.
 //
 
-
+import Foundation
 import UIKit
+import Kingfisher
 
 final class ViewController: UIViewController {
     
-    @IBOutlet weak var popularMovie: UIImageView!
+    @IBOutlet weak var trendingMovie: UIImageView?
+    
+    private let trendingUrl : String = "trending/movie/day?api_key=3f2d000acd208182b31eb1e5c2903ab8&language=en%C2%AEion=US&page=1/su9WzL7lwUZPhjH6eZByAYFx2US.jpg"
+    private let imagesBaseURL = "https://image.tmdb.org/t/p/w185/"
     
     private var moviesList: MoviesList? = nil
-    private let movies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setup()
-
-    }
-
-    private func setup() {
         getMoviesList()
     }
     
     private func getMoviesList() {
-        var getMoviesAPI = GetMoviesAPI()
+        let getMoviesAPI = GetMoviesAPI()
         
-        guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=3f2d000acd208182b31eb1e5c2903ab8&language=en&region=US&page=1") else { return }
-            let request = URLRequest(url: url)
-        
-        guard let moviesList = getMoviesAPI.performRequest(request: request) else { return }
-        print(moviesList.results[1].title)
+        getMoviesAPI.performRequest(urlString: trendingUrl) { (moviesList, requestError) in
+            if let error = requestError {
+                print("Found error: \(error)")
+                return
+            }
+            
+            self.moviesList = moviesList
+            moviesList?.results.forEach { Movie in
+                print(Movie.title)
+            }
+            
+            self.refreshUI()
+        }
     }
     
+    private func refreshUI() {
+        // Set the home banner random movie poster
+        setRandomPoster()
+    }
+    
+    private func setRandomPoster() {
+        guard let moviesCount = moviesList?.results.count else { return }
+        
+        let randomIndex = Int.random(in: 0..<moviesCount)
+        guard let posterPath = moviesList?.results[randomIndex].poster_path else { return }
+        
+        guard let imageUrl = URL(string: imagesBaseURL+posterPath) else { return }
+        trendingMovie?.kf.setImage(with: imageUrl)
+    }
 }
 

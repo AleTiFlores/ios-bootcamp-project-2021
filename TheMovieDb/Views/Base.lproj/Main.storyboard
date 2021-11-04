@@ -21,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="125" width="414" height="255"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="movieImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="2W7-0u-mw9" userLabel="popularMovie">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="movieImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="2W7-0u-mw9" userLabel="trendingMovie">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="255"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35446763040000001" green="0.6431651115" blue="0.63530009980000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.13334658739999999" green="0.1172724143" blue="0.1372571886" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome.            Discover millions of movies and tv shows!" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OK-D6-kY5">
                                         <rect key="frame" x="16" y="8" width="381" height="239"/>
@@ -39,7 +39,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
-                                <color key="backgroundColor" red="0.35446763040000001" green="0.6431651115" blue="0.63530009980000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.13334658739999999" green="0.1172724143" blue="0.1372571886" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XoG-aq-wsK">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="124"/>
@@ -106,7 +106,7 @@
                         <color key="backgroundColor" red="0.13334658739999999" green="0.1172724143" blue="0.1372571886" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <connections>
-                        <outlet property="popularMovie" destination="2W7-0u-mw9" id="Nfl-rU-zAo"/>
+                        <outlet property="trendingMovie" destination="2W7-0u-mw9" id="J39-YT-zR1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
