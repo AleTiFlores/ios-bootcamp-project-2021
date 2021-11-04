@@ -8,6 +8,8 @@
 import UIKit
 
 final class ViewController: UIViewController {
+    
+    let someForceCast = NSObject() as! Int
 
     override func viewDidLoad() {
         super.viewDidLoad()
