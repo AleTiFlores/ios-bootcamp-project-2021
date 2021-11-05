@@ -13,7 +13,7 @@ final class ViewController: UIViewController {
     
     @IBOutlet weak var trendingMovie: UIImageView?
     
-    private let trendingUrl : String = "trending/movie/day?api_key=3f2d000acd208182b31eb1e5c2903ab8&language=en%C2%AEion=US&page=1/su9WzL7lwUZPhjH6eZByAYFx2US.jpg"
+    private let trendingUrl : String = "trending/movie/day?api_key=3f2d000acd208182b31eb1e5c2903ab8&language=en&region=US&page=1"
     private let imagesBaseURL = "https://image.tmdb.org/t/p/w185/"
     
     private var moviesList: MoviesList? = nil
@@ -33,10 +33,6 @@ final class ViewController: UIViewController {
             }
             
             self.moviesList = moviesList
-            moviesList?.results.forEach { Movie in
-                print(Movie.title)
-            }
-            
             self.refreshUI()
         }
     }

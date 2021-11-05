@@ -27,7 +27,7 @@ struct MovieItem: Decodable {
     }
 }
 
-struct MoviesList: Decodable, Equatable{
+struct MoviesList: Decodable, Equatable {
     let results : [Movie]
 }
 
