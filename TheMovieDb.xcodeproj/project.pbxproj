@@ -19,6 +19,7 @@
 		FA2BE1582733BB3F005F31AD /* MoviesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2BE1572733BB3F005F31AD /* MoviesList.swift */; };
 		FA2BE15A2733BC06005F31AD /* GetMoviesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2BE1592733BC06005F31AD /* GetMoviesAPI.swift */; };
 		FA2BE15F273479F7005F31AD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FA2BE15E273479F7005F31AD /* Kingfisher */; };
+		FACDF03D2735DBE80073FF88 /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDF03C2735DBE80073FF88 /* MoviesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		FA2BE1552733ABCA005F31AD /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		FA2BE1572733BB3F005F31AD /* MoviesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesList.swift; sourceTree = "<group>"; };
 		FA2BE1592733BC06005F31AD /* GetMoviesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMoviesAPI.swift; sourceTree = "<group>"; };
+		FACDF03C2735DBE80073FF88 /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				837B4EA7258178B6003DFC67 /* AppDelegate.swift */,
 				837B4EA9258178B6003DFC67 /* SceneDelegate.swift */,
+				FACDF03C2735DBE80073FF88 /* MoviesTableViewCell.swift */,
 				FA1C857727308F2D00CBA9D2 /* Models */,
 				FA1C857827308F3500CBA9D2 /* Views */,
 				FA1C857A27308F4C00CBA9D2 /* Controllers */,
@@ -323,6 +326,7 @@
 				FA2BE1562733ABCB005F31AD /* Movie.swift in Sources */,
 				FA2BE1582733BB3F005F31AD /* MoviesList.swift in Sources */,
 				FA2BE15A2733BC06005F31AD /* GetMoviesAPI.swift in Sources */,
+				FACDF03D2735DBE80073FF88 /* MoviesTableViewCell.swift in Sources */,
 				837B4EAA258178B6003DFC67 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

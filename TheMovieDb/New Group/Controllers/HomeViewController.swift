@@ -9,9 +9,11 @@ import Foundation
 import UIKit
 import Kingfisher
 
-final class ViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
-    @IBOutlet weak var trendingMovie: UIImageView?
+    @IBOutlet weak var randomTrendingMovie: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
+    
     
     private let trendingUrl : String = "trending/movie/day?api_key=3f2d000acd208182b31eb1e5c2903ab8&language=en&region=US&page=1"
     private let imagesBaseURL = "https://image.tmdb.org/t/p/w185/"
@@ -49,7 +51,8 @@ final class ViewController: UIViewController {
         guard let posterPath = moviesList?.results[randomIndex].poster_path else { return }
         
         guard let imageUrl = URL(string: imagesBaseURL+posterPath) else { return }
-        trendingMovie?.kf.setImage(with: imageUrl)
+        randomTrendingMovie?.kf.setImage(with: imageUrl)
     }
 }
+
 
