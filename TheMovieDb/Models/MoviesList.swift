@@ -16,6 +16,7 @@ struct MovieItem: Decodable {
         case name
         case url
     }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let url = try container.decode(String.self, forKey: .url)
