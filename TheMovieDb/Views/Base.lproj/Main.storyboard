@@ -21,26 +21,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-CB-iz4">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" red="0.13334658739999999" green="0.1172724143" blue="0.1372571886" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="DNq-gJ-CfI">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b1L-CR-72O">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="242"/>
-                                            <color key="backgroundColor" red="0.88248223069999998" green="0.92959827179999999" blue="0.91764676570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.88248223069999998" green="0.92959827179999999" blue="0.91764676570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <constraints>
-                                        <constraint firstItem="b1L-CR-72O" firstAttribute="top" secondItem="DNq-gJ-CfI" secondAttribute="top" id="BOY-Zf-FwP"/>
-                                        <constraint firstAttribute="trailing" secondItem="b1L-CR-72O" secondAttribute="trailing" id="LHz-xd-QWb"/>
-                                        <constraint firstAttribute="bottom" secondItem="b1L-CR-72O" secondAttribute="bottom" constant="8" id="TRl-YK-Ep5"/>
-                                        <constraint firstItem="b1L-CR-72O" firstAttribute="leading" secondItem="DNq-gJ-CfI" secondAttribute="leading" id="jDw-O7-foT"/>
-                                    </constraints>
-                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoviesTableViewCell" rowHeight="281" id="kFS-BC-bN0" customClass="MoviesTableViewCell" customModule="TheMovieDb" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="294.5" width="414" height="281"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="281"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kFS-BC-bN0" id="WD1-RS-3qh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="281"/>
@@ -114,7 +97,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="randomTrendingMovie" destination="b1L-CR-72O" id="66A-xZ-EAa"/>
                         <outlet property="tableView" destination="8ie-CB-iz4" id="ovz-xv-p9C"/>
                     </connections>
                 </viewController>

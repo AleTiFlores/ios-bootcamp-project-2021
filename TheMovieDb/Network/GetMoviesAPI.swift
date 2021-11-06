@@ -13,7 +13,7 @@ struct GetMoviesAPI {
     public func performRequest(urlString: String, completion: @escaping (MoviesList?, Error?) -> ()) {
         
         guard let url = URL(string: baseURL + urlString) else { return }
-        
+        print(url)
         URLSession.shared.dataTask(with: url) { (sessionData, sessionResponse, error) in
             
             if let errorFound = error {
