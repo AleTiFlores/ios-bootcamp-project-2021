@@ -38,6 +38,7 @@ final class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         getMovies()
+        print("Hi")
     }
     
     private func getMovies() {
