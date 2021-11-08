@@ -16,7 +16,7 @@ enum NetworkError: Error {
 
 final class HomeViewController: UIViewController {
     
-    @IBOutlet weak var randomTrendingMovie: UIImageView!
+    @IBOutlet weak var randomMovie: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
     static let trendingUrl: String = "/trending/movie/day?api_key=3f2d000acd208182b31eb1e5c2903ab8&language=en&region=US&page=1"
@@ -37,8 +37,6 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 240
-        
         getMovies()
     }
     
@@ -88,19 +86,9 @@ final class HomeViewController: UIViewController {
     
     private func refreshUI() {
         // Set the home banner random movie poster
-//        setRandomPoster()
     }
     
-//    private func setRandomPoster() {
-//        let randomIndex = Int.random(in: 0..<trendingMovies.count)
-//        let posterPath = trendingMovies[randomIndex].poster_path
-//        guard let imageUrl = URL(string: imagesBaseURL+posterPath) else { return }
-//        randomTrendingMovie?.kf.setImage(with: imageUrl)
-//
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
-//    }
+
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {

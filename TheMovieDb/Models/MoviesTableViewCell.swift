@@ -11,6 +11,7 @@ import Kingfisher
 class MoviesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var categoryTableViewCell: UILabel!
     
     var moviesList: [Movie]? {
         didSet {
@@ -44,9 +45,5 @@ extension MoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         cell.fillData(movie: movieList[indexPath.row])
         
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 250, height: 190)
     }
 }
