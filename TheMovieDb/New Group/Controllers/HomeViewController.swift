@@ -38,7 +38,6 @@ final class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         getMovies()
-        print("Hi")
     }
     
     private func getMovies() {
@@ -84,12 +83,6 @@ final class HomeViewController: UIViewController {
             completion(.success(movies))
         }
     }
-    
-    private func refreshUI() {
-        // Set the home banner random movie poster
-    }
-    
-
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -119,7 +112,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return movieSections[section]
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.textColor = UIColor(red: 0.9, green: 0.49, blue: 0.89, alpha: 1)
+        label.text = movieSections[section]
+        return label
     }
 }
