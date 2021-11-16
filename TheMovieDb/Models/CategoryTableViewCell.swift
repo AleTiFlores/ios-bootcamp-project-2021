@@ -6,16 +6,14 @@
 //
 
 import UIKit
-import Kingfisher
 
-class MoviesTableViewCell: UITableViewCell {
+class CategoryTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var categoryTableViewCell: UILabel!
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     var moviesList: [Movie]? {
         didSet {
-            collectionView.reloadData()
+            categoryCollectionView.reloadData()
         }
     }
     
@@ -25,12 +23,12 @@ class MoviesTableViewCell: UITableViewCell {
     }
     
     func setupCollectionView() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        categoryCollectionView.delegate = self
+        categoryCollectionView.dataSource = self
     }
 }
 
-extension MoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let moviesList = moviesList else { return 0 }
@@ -38,7 +36,7 @@ extension MoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as? MovieCollectionViewCell,
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as? CategoryCollectionViewCell,
               let movieList = moviesList else {
             return UICollectionViewCell()
         }

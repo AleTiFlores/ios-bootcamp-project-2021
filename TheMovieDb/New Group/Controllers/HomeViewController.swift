@@ -5,9 +5,7 @@
 //  Created by Alex on 11/4/21.
 //
 
-import Foundation
 import UIKit
-import Kingfisher
 
 enum NetworkError: Error {
     case badURL
@@ -79,7 +77,6 @@ final class HomeViewController: UIViewController {
                 completion(.failure(.errorData))
                 return
             }
-            print("success \(String(describing: requestData))")
             completion(.success(movies))
         }
     }
@@ -95,7 +92,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell") as? MoviesTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell") as? CategoryTableViewCell else {
             return UITableViewCell()
         }
         if indexPath.section == 0 {

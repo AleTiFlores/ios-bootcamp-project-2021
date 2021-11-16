@@ -29,7 +29,7 @@ struct MovieItem: Decodable {
 }
 
 struct MoviesList: Codable {
-    let results : [Movie]
+    let results : [Movie]?
 }
 
 extension String {

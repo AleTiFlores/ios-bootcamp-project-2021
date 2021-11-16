@@ -5,8 +5,6 @@
 //  Created by Alex on 11/3/21.
 //
 
-import Foundation
-
 struct Movie: Codable {
     let title: String
     let overview: String
@@ -16,10 +14,10 @@ struct Movie: Codable {
     let id: Int
     let original_language: String
     let original_title: String
-    let poster_path: String
+    let poster_path: String?
     let vote_count: Int
     let video: Bool
     let vote_average: Float
     let popularity: Float
-    let media_type: String
+    let media_type: String?
 }
