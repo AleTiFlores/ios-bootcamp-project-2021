@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="33" width="414" height="277"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movieImage" translatesAutoresizingMaskIntoConstraints="NO" id="b2O-if-cyk" userLabel="RandomMovie">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movieImage" translatesAutoresizingMaskIntoConstraints="NO" id="b2O-if-cyk" userLabel="RandomMovie">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="277"/>
                                     </imageView>
                                 </subviews>

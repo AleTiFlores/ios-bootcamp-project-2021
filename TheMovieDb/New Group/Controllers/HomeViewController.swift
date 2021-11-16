@@ -36,6 +36,7 @@ final class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         getMovies()
+        setupBaner()
     }
     
     private func getMovies() {
@@ -49,7 +50,6 @@ final class HomeViewController: UIViewController {
                     switch result {
                     case .success(let movies):
                         self.movieList.append(movies)
-                        //self.movieList[index].append(contentsOf: movies)
                         downloadGroup.leave()
                     case .failure(_):
                         downloadGroup.leave()
@@ -80,7 +80,18 @@ final class HomeViewController: UIViewController {
             completion(.success(movies))
         }
     }
+    
+    private func setupBaner() {        
+        guard let listElements = movieList.first?.count else { return }
+        let randomIndex = Int.random(in: 0..<listElements)
+        
+        guard let posterPath = movieList.first?[randomIndex].poster_path else { return }
+        let imageUrl = "https://image.tmdb.org/t/p/w185\(posterPath)"
+        
+        randomMovie.kf.setImage(with: URL(string: imageUrl))
+    }
 }
+
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,17 +106,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell") as? CategoryTableViewCell else {
             return UITableViewCell()
         }
-        if indexPath.section == 0 {
-            cell.moviesList = movieList[0]
-        } else if indexPath.section == 1 {
-            cell.moviesList = movieList[1]
-        } else if indexPath.section == 2 {
-            cell.moviesList = movieList[2]
-        } else if indexPath.section == 3 {
-            cell.moviesList = movieList[3]
-        } else if indexPath.section == 4 {
-            cell.moviesList = movieList[4]
-        }
+        cell.moviesList = movieList[indexPath.section]
         return cell
     }
     
