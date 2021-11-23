@@ -90,6 +90,23 @@ final class HomeViewController: UIViewController {
         
         randomMovie.kf.setImage(with: URL(string: imageUrl))
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+      guard
+        segue.identifier == "ShowDetailSegue",
+        let categoryCollectionViewCell = sender as? CategoryCollectionViewCell,
+        let detailViewController = segue.destination as? DetailViewController
+        else {
+          return
+      }
+    
+        detailViewController.movie = categoryCollectionViewCell.movie
+    }
+    
+    @IBAction func didUnwindFromHomeViewController(_ segue: UIStoryboardSegue) {
+        guard let homeViewController = segue.source as? HomeViewController else { return }
+    }
 }
 
 
