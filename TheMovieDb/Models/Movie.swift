@@ -20,4 +20,27 @@ struct Movie: Codable {
     let vote_average: Float
     let popularity: Float
     let media_type: String?
+    
+    enum Category: Decodable {
+        case all
+    }
+}
+
+extension Movie.Category: CaseIterable { }
+
+extension Movie.Category: RawRepresentable {
+  typealias RawValue = String
+  
+  init?(rawValue: RawValue) {
+    switch rawValue {
+    case "All": self = .all
+    default: return nil
+    }
+  }
+  
+  var rawValue: RawValue {
+    switch self {
+    case .all: return "All"
+    }
+  }
 }

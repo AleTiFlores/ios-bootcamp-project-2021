@@ -31,12 +31,33 @@ final class HomeViewController: UIViewController {
                                            "\(topRatedUrl)",
                                            "\(upcomingUrl)"]
     
+    var searchResultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
+    
+    var searchController: UISearchController!
+    
+    var filteredMovies: [Movie] = []
+    
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         getMovies()
         setupBaner()
+        title = "The MDB App"
+        searchController = UISearchController(searchResultsController: searchResultViewController)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Movies"
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     private func getMovies() {
@@ -84,28 +105,31 @@ final class HomeViewController: UIViewController {
     private func setupBaner() {        
         guard let listElements = movieList.first?.count else { return }
         let randomIndex = Int.random(in: 0..<listElements)
-        
         guard let posterPath = movieList.first?[randomIndex].poster_path else { return }
         let imageUrl = "https://image.tmdb.org/t/p/w185\(posterPath)"
-        
         randomMovie.kf.setImage(with: URL(string: imageUrl))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
       guard
         segue.identifier == "ShowDetailSegue",
         let categoryCollectionViewCell = sender as? CategoryCollectionViewCell,
         let detailViewController = segue.destination as? DetailViewController
-        else {
-          return
-      }
-    
+        else { return }
         detailViewController.movie = categoryCollectionViewCell.movie
     }
     
     @IBAction func didUnwindFromHomeViewController(_ segue: UIStoryboardSegue) {
         guard let homeViewController = segue.source as? HomeViewController else { return }
+    }
+    
+    func filterContentForSearchText(_ searchText: String, category: Movie.Category? = nil) {
+        for movie in movieList {
+            filteredMovies = movie.filter { (movie: Movie) -> Bool in
+                return movie.title.lowercased().contains(searchText.lowercased())
+            }
+        }
+      tableView.reloadData()
     }
 }
 
@@ -132,5 +156,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         label.textColor = UIColor(red: 0.9, green: 0.49, blue: 0.89, alpha: 1)
         label.text = movieSections[section]
         return label
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchResultViewController.filteredMovies = filteredMovies
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }
