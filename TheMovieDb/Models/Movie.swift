@@ -26,6 +26,13 @@ struct Movie: Codable {
     }
 }
 
+extension Movie: Hashable {
+    static func ==(lhs: Movie, rhs: Movie) -> Bool {
+        
+        return lhs.title.trimmingCharacters(in: .whitespacesAndNewlines) == rhs.title.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+
 extension Movie.Category: CaseIterable { }
 
 extension Movie.Category: RawRepresentable {

@@ -124,15 +124,23 @@ final class HomeViewController: UIViewController {
     }
     
     func filterContentForSearchText(_ searchText: String, category: Movie.Category? = nil) {
-        for movie in movieList {
-            filteredMovies = movie.filter { (movie: Movie) -> Bool in
-                return movie.title.lowercased().contains(searchText.lowercased())
-            }
+        let movies = movieList.flatMap{ $0 }
+        let filteredMovies = movies.filter { movie in
+            movie.title.localizedCaseInsensitiveContains(searchText)
         }
-      tableView.reloadData()
+        
+        self.filteredMovies = filteredMovies.unique()
+        print(self.filteredMovies)
     }
 }
 
+
+extension Sequence where Iterator.Element: Hashable {
+    func unique() -> [Iterator.Element] {
+        var seen: [Iterator.Element: Bool] = [:]
+        return self.filter { seen.updateValue(true, forKey: $0) == nil }
+    }
+}
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
