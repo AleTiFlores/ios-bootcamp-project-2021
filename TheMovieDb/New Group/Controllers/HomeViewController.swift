@@ -13,9 +13,8 @@ enum NetworkError: Error {
 }
 
 final class HomeViewController: UIViewController {
-    
-    @IBOutlet weak var randomMovie: UIImageView!
-    @IBOutlet weak var tableView: UITableView!
+
+    @IBOutlet private weak var tableView: UITableView!
     
     static let trendingUrl: String = "/trending/movie/day?api_key=3f2d000acd208182b31eb1e5c2903ab8&language=en&region=US&page=1"
     static let nowPlayingUrl: String = "/movie/now_playing?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=en&region=US&page=1"
@@ -23,15 +22,15 @@ final class HomeViewController: UIViewController {
     static let topRatedUrl: String = "/movie/top_rated?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=en&page=1&region=US"
     static let upcomingUrl: String = "/movie/upcoming?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=en&region=US&page=1"
     static let imagesBaseURL = "https://api.themoviedb.org/3"
-    private let movieSections = ["Trending" , "Now Playing", "Popular", "Top Rated", "Upcoming"]
+    private let movieSections = ["Trending", "Now Playing", "Popular", "Top Rated", "Upcoming"]
     private var movieList = [[Movie]]()
     private let categoriesUrl: [String] = ["\(trendingUrl)",
                                            "\(nowPlayingUrl)",
                                            "\(popularUrl)",
                                            "\(topRatedUrl)",
                                            "\(upcomingUrl)"]
-    
-    var searchResultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
+
+    var searchResultViewController: SearchResultViewController?
     
     var searchController: UISearchController!
     
@@ -47,10 +46,11 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchResultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultViewController") as? SearchResultViewController
+        
         tableView.delegate = self
         tableView.dataSource = self
         getMovies()
-        setupBaner()
         title = "The MDB App"
         searchController = UISearchController(searchResultsController: searchResultViewController)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -64,7 +64,7 @@ final class HomeViewController: UIViewController {
         let downloadGroup = DispatchGroup()
         let queue = DispatchQueue(label: "com.gcd.dispatchGroup", attributes: .concurrent)
         
-        for (index, url) in categoriesUrl.enumerated() {
+        for (_, url) in categoriesUrl.enumerated() {
             queue.async {
                 downloadGroup.enter()
                 self.getData(dataUrl: url) { (result) in
@@ -72,7 +72,8 @@ final class HomeViewController: UIViewController {
                     case .success(let movies):
                         self.movieList.append(movies)
                         downloadGroup.leave()
-                    case .failure(_):
+                    case .failure(let fail):
+                        debugPrint(fail)
                         downloadGroup.leave()
                     }
                 }
@@ -102,14 +103,6 @@ final class HomeViewController: UIViewController {
         }
     }
     
-    private func setupBaner() {        
-        guard let listElements = movieList.first?.count else { return }
-        let randomIndex = Int.random(in: 0..<listElements)
-        guard let posterPath = movieList.first?[randomIndex].poster_path else { return }
-        let imageUrl = "https://image.tmdb.org/t/p/w185\(posterPath)"
-        randomMovie.kf.setImage(with: URL(string: imageUrl))
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       guard
         segue.identifier == "ShowDetailSegue",
@@ -119,12 +112,8 @@ final class HomeViewController: UIViewController {
         detailViewController.movie = categoryCollectionViewCell.movie
     }
     
-    @IBAction func didUnwindFromHomeViewController(_ segue: UIStoryboardSegue) {
-        guard let homeViewController = segue.source as? HomeViewController else { return }
-    }
-    
     func filterContentForSearchText(_ searchText: String, category: Movie.Category? = nil) {
-        let movies = movieList.flatMap{ $0 }
+        let movies = movieList.flatMap {$0}
         let filteredMovies = movies.filter { movie in
             movie.title.localizedCaseInsensitiveContains(searchText)
         }
@@ -133,7 +122,6 @@ final class HomeViewController: UIViewController {
         print(self.filteredMovies)
     }
 }
-
 
 extension Sequence where Iterator.Element: Hashable {
     func unique() -> [Iterator.Element] {
@@ -169,7 +157,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchResultViewController.filteredMovies = filteredMovies
+        searchResultViewController?.filteredMovies = filteredMovies
         filterContentForSearchText(searchController.searchBar.text!)
     }
 }

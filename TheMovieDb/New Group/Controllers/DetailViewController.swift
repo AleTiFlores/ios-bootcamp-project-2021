@@ -10,7 +10,7 @@ import UIKit
 
 final class DetailViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     var movie: Movie?
     
     override func viewDidLoad() {

@@ -9,7 +9,7 @@ import UIKit
 
 final class SearchResultViewController: UIViewController {
  
-    @IBOutlet weak var searchResultTableView: UITableView!
+    @IBOutlet private weak var searchResultTableView: UITableView!
 
     var filteredMovies: [Movie] = [] {
         didSet {
