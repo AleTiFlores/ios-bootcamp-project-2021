@@ -6,43 +6,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var detailCollectionView: UICollectionView!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var headerImageView: UIImageView!
     
-    var movieDetail: MovieDetail? {
-        didSet {
-            detailCollectionView.reloadData()
+    func fillData(movie: MovieDetail?) {
+        descriptionLabel.text = movie?.overview
+        if let poster_path = movie?.poster_path,
+            let url = URL(string: "\(MovieDbEndPoints.imagesBaseURL)\(poster_path)") {
+            headerImageView.kf.setImage(with: url)
         }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupCollectionView()
-    }
-    
-    func setupCollectionView() {
-        detailCollectionView.delegate = self
-        detailCollectionView.dataSource = self
-    }
-}
-
-extension DetailTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let detailItems = movieDetail?.items.count else { return 0 }
-        return detailItems
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCollectionViewCell", for: indexPath) as? DetailCollectionViewCell
-        else { return UICollectionViewCell() }
-        
-        guard let detailItems = movieDetail?.items else { return UICollectionViewCell() }
-        
-        cell.fillData(dataString: detailItems[indexPath.row])
-
-        return cell
     }
 }

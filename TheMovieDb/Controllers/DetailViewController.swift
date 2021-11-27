@@ -38,8 +38,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         else { return  UITableViewCell() }
         
         let movieDetail = MovieDetail(posterPath: posterPath, overview: overview, backgropPath: backdropPath)
+        cell.fillData(movie: movieDetail)
         
-        cell.movieDetail = movieDetail
         return cell
     }
     
