@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class SearchResultTableViewCell: UITableViewCell {
+final class SearchResultTableViewCell: UITableViewCell {
     @IBOutlet private weak var resultTitleLabel: UILabel!
     @IBOutlet private weak var resultImageView: UIImageView!
     

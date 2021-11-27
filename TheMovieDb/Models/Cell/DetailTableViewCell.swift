@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class DetailTableViewCell: UITableViewCell {
+final class DetailTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var headerImageView: UIImageView!

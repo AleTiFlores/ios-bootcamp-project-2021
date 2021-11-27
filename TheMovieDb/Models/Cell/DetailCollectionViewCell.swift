@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class DetailCollectionViewCell: UICollectionViewCell {
+final class DetailCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var detailImageView: UIImageView!
     @IBOutlet @IBOutlet weak var detailTextView: UITextView!
     
