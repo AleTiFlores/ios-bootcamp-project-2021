@@ -43,6 +43,8 @@ final class HomeViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Movies"
         searchController.searchBar.delegate = self
+        searchController.searchBar.backgroundColor = .black
+        searchController.searchBar.searchTextField.backgroundColor = .white
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
@@ -99,7 +101,7 @@ final class HomeViewController: UIViewController {
         detailViewController.movie = categoryCollectionViewCell.movie
     }
     
-    func filterContentForSearchText(_ searchText: String, category: Movie.Category? = nil) {
+    func filterContentForSearchText(_ searchText: String) {
         let movies = movieList.flatMap {$0}
         let filteredMovies = movies.filter { movie in
             movie.title.localizedCaseInsensitiveContains(searchText)
@@ -136,8 +138,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.textColor = UIColor(red: 0.9, green: 0.49, blue: 0.89, alpha: 1)
+        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
         label.text = movieSections[section]
+        label.font = UIFont(name: "Charter", size: 28)
         return label
     }
 }
