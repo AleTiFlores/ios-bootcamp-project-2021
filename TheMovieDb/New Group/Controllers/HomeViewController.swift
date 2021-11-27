@@ -31,11 +31,8 @@ final class HomeViewController: UIViewController {
                                            "\(upcomingUrl)"]
 
     var searchResultViewController: SearchResultViewController?
-    
     var searchController: UISearchController!
-    
     var filteredMovies: [Movie] = []
-    
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
     }
