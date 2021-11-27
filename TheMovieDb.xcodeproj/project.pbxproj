@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		64EB881D274DB46300970829 /* SearchResultViewControlleŗ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB881C274DB46300970829 /* SearchResultViewControlleŗ.swift */; };
+		644AEB1D2751C21000F9B02B /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644AEB1C2751C21000F9B02B /* SearchResultViewController.swift */; };
 		64EB881F274DFF7700970829 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB881E274DFF7700970829 /* SearchResultTableViewCell.swift */; };
 		837B4EA8258178B6003DFC67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B4EA7258178B6003DFC67 /* AppDelegate.swift */; };
 		837B4EAA258178B6003DFC67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B4EA9258178B6003DFC67 /* SceneDelegate.swift */; };
@@ -47,7 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		64EB881C274DB46300970829 /* SearchResultViewControlleŗ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultViewControlleŗ.swift"; sourceTree = "<group>"; };
+		644AEB1C2751C21000F9B02B /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		64EB881E274DFF7700970829 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		837B4EA4258178B6003DFC67 /* TheMovieDb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieDb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837B4EA7258178B6003DFC67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -190,10 +190,9 @@
 			children = (
 				837B4EAB258178B6003DFC67 /* HomeViewController.swift */,
 				FA6983CD27459460007E3099 /* DetailViewController.swift */,
-				64EB881C274DB46300970829 /* SearchResultViewControlleŗ.swift */,
+				644AEB1C2751C21000F9B02B /* SearchResultViewController.swift */,
 			);
-			name = Controllers;
-			path = "New Group/Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		FA4939722736518400B43884 /* Network */ = {
@@ -369,7 +368,7 @@
 				FA2BE1562733ABCB005F31AD /* Movie.swift in Sources */,
 				FA2BE1582733BB3F005F31AD /* MoviesList.swift in Sources */,
 				FA2BE15A2733BC06005F31AD /* GetMoviesAPI.swift in Sources */,
-				64EB881D274DB46300970829 /* SearchResultViewControlleŗ.swift in Sources */,
+				644AEB1D2751C21000F9B02B /* SearchResultViewController.swift in Sources */,
 				FACDF03D2735DBE80073FF88 /* CategoryTableViewCell.swift in Sources */,
 				837B4EAA258178B6003DFC67 /* SceneDelegate.swift in Sources */,
 				64EB881F274DFF7700970829 /* SearchResultTableViewCell.swift in Sources */,
@@ -550,6 +549,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TheMovieDb/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -569,6 +569,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TheMovieDb/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

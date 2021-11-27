@@ -2,7 +2,7 @@
 //  TheMovieDbTests.swift
 //  TheMovieDbTests
 //
-//  Created by Jose Antonio Trejo Flores on 09/12/20.
+//  Created by Alex on 09/12/20.
 //
 
 import XCTest

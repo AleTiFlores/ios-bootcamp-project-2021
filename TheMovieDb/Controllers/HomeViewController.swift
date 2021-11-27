@@ -7,37 +7,27 @@
 
 import UIKit
 
-enum NetworkError: Error {
-    case badURL
-    case errorData
-}
-
 final class HomeViewController: UIViewController {
-
     @IBOutlet private weak var tableView: UITableView!
-    
-    static let trendingUrl: String = "/trending/movie/day?api_key=3f2d000acd208182b31eb1e5c2903ab8&language=en&region=US&page=1"
-    static let nowPlayingUrl: String = "/movie/now_playing?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=en&region=US&page=1"
-    static let popularUrl: String = "/movie/popular?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=en&region=US&page=1"
-    static let topRatedUrl: String = "/movie/top_rated?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=en&page=1&region=US"
-    static let upcomingUrl: String = "/movie/upcoming?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=en&region=US&page=1"
-    static let imagesBaseURL = "https://api.themoviedb.org/3"
-    private let movieSections = ["Trending", "Now Playing", "Popular", "Top Rated", "Upcoming"]
+    private let movieSections = ["Trending",
+                                 "Now Playing",
+                                 "Popular",
+                                 "Top Rated",
+                                 "Upcoming"]
     private var movieList = [[Movie]]()
-    private let categoriesUrl: [String] = ["\(trendingUrl)",
-                                           "\(nowPlayingUrl)",
-                                           "\(popularUrl)",
-                                           "\(topRatedUrl)",
-                                           "\(upcomingUrl)"]
-
-    var searchResultViewController: SearchResultViewController?
-    var searchController: UISearchController!
-    var filteredMovies: [Movie] = []
-    var isSearchBarEmpty: Bool {
+    private let categoriesUrl: [String] = ["\(MovieDbEndPoints.trendingUrl)",
+                                           "\(MovieDbEndPoints.nowPlayingUrl)",
+                                           "\(MovieDbEndPoints.popularUrl)",
+                                           "\(MovieDbEndPoints.topRatedUrl)",
+                                           "\(MovieDbEndPoints.upcomingUrl)"]
+    private var searchResultViewController: SearchResultViewController?
+    private var searchController: UISearchController!
+    private var filteredMovies: [Movie] = []
+    private var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
     }
     
-    var isFiltering: Bool {
+    private var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
     }
     
@@ -48,7 +38,7 @@ final class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         getMovies()
-        title = "The MDB App"
+        title = "Alex Movies"
         searchController = UISearchController(searchResultsController: searchResultViewController)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Movies"
