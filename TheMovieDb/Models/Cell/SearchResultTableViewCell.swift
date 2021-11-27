@@ -9,9 +9,8 @@ import UIKit
 import Kingfisher
 
 class SearchResultTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var resultTitleLabel: UILabel!
-    @IBOutlet weak var resultImageView: UIImageView!
+    @IBOutlet private weak var resultTitleLabel: UILabel!
+    @IBOutlet private weak var resultImageView: UIImageView!
     
     func fillData(movie: Movie) {
         guard let posterPath = movie.poster_path else { return }

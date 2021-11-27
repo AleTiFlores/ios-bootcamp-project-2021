@@ -9,7 +9,7 @@ import UIKit
 
 class CategoryTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var categoryCollectionView: UICollectionView!
+    @IBOutlet private weak var categoryCollectionView: UICollectionView!
     
     var moviesList: [Movie]? {
         didSet {

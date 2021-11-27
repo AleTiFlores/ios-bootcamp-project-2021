@@ -9,9 +9,8 @@ import UIKit
 import Kingfisher
 
 class DetailCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var detailImageView: UIImageView!
-    @IBOutlet weak var detailTextView: UITextView!
+    @IBOutlet private weak var detailImageView: UIImageView!
+    @IBOutlet @IBOutlet weak var detailTextView: UITextView!
     
     func fillData(dataString: String) {
         

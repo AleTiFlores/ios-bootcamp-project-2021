@@ -9,8 +9,8 @@ import UIKit
 import Kingfisher
 
 final class CategoryCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
     
     var movie: Movie?
     

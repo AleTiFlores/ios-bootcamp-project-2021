@@ -8,7 +8,6 @@
 import UIKit
 
 final class SearchResultViewController: UIViewController {
- 
     @IBOutlet private weak var searchResultTableView: UITableView!
 
     var filteredMovies: [Movie] = [] {

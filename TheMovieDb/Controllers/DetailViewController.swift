@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class DetailViewController: UIViewController {
-    
     @IBOutlet private weak var tableView: UITableView!
     var movie: Movie?
     
