@@ -2,7 +2,7 @@
 //  SearchResultViewController.swift
 //  TheMovieDb
 //
-//  Created by Angel Trejo on 23/11/21.
+//  Created by Alex on 23/11/21.
 //
 
 import UIKit
