@@ -25,7 +25,6 @@
 		FA6983CE27459460007E3099 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6983CD27459460007E3099 /* DetailViewController.swift */; };
 		FACDF03D2735DBE80073FF88 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDF03C2735DBE80073FF88 /* CategoryTableViewCell.swift */; };
 		FAE02F2E2746DD330028A07C /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE02F2D2746DD330028A07C /* DetailTableViewCell.swift */; };
-		FAE02F302746E2610028A07C /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE02F2F2746E2610028A07C /* DetailCollectionViewCell.swift */; };
 		FAE02F32274721880028A07C /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE02F31274721880028A07C /* MovieDetail.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +69,6 @@
 		FA6983CD27459460007E3099 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FACDF03C2735DBE80073FF88 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		FAE02F2D2746DD330028A07C /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
-		FAE02F2F2746E2610028A07C /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		FAE02F31274721880028A07C /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,7 +104,6 @@
 				FACDF03C2735DBE80073FF88 /* CategoryTableViewCell.swift */,
 				FA49396F27364DA500B43884 /* CategoryCollectionViewCell.swift */,
 				FAE02F2D2746DD330028A07C /* DetailTableViewCell.swift */,
-				FAE02F2F2746E2610028A07C /* DetailCollectionViewCell.swift */,
 				64EB881E274DFF7700970829 /* SearchResultTableViewCell.swift */,
 			);
 			path = Cell;
@@ -360,7 +357,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAE02F302746E2610028A07C /* DetailCollectionViewCell.swift in Sources */,
 				FA6983CE27459460007E3099 /* DetailViewController.swift in Sources */,
 				837B4EAC258178B6003DFC67 /* HomeViewController.swift in Sources */,
 				FAE02F32274721880028A07C /* MovieDetail.swift in Sources */,
