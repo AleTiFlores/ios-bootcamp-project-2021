@@ -17,6 +17,7 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        title = movie?.title
     }
 }
 
