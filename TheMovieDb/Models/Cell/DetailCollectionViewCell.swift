@@ -10,7 +10,7 @@ import Kingfisher
 
 final class DetailCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var detailImageView: UIImageView!
-    @IBOutlet @IBOutlet weak var detailTextView: UITextView!
+    @IBOutlet private weak var detailTextView: UITextView!
     
     func fillData(dataString: String) {
         
