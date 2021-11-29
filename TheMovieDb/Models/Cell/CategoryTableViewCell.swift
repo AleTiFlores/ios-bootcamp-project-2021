@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol CategoryTableViewCellDelegate: AnyObject {
+    func collectionView(didSelectMovie movie: Movie)
+}
+
 final class CategoryTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
+    
+    weak var delegate: CategoryTableViewCellDelegate?
     
     var moviesList: [Movie]? {
         didSet {
@@ -43,5 +49,10 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         cell.fillData(movie: movieList[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let movie = moviesList?[indexPath.row] else { return }
+        delegate?.collectionView(didSelectMovie: movie)
     }
 }

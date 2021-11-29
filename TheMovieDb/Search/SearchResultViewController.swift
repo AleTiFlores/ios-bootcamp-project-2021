@@ -36,4 +36,10 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Search result selected, \(indexPath)")
+        let detail = FactoryViewController.createDetailViewController(withMovie: filteredMovies[indexPath.row])
+        show(detail, sender: nil)
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mp2-QO-pwd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -86,7 +86,7 @@
         <!--Home View Controller-->
         <scene sceneID="R09-Ii-HDJ">
             <objects>
-                <viewController id="6FG-be-Y46" customClass="HomeViewController" customModule="TheMovieDb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="6FG-be-Y46" customClass="HomeViewController" customModule="TheMovieDb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gbh-Lz-v1W">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,7 +168,6 @@
                                                             <connections>
                                                                 <outlet property="imageView" destination="VVJ-L9-4jD" id="wcr-3b-tMQ"/>
                                                                 <outlet property="titleLabel" destination="T0J-hU-ely" id="sqG-84-z3H"/>
-                                                                <segue destination="3Oj-HP-Qi7" kind="show" identifier="ShowDetailSegue" id="5qn-j0-Uec"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -211,22 +210,13 @@
         <!--Detail View Controller-->
         <scene sceneID="2AM-2w-7xX">
             <objects>
-                <viewController id="3Oj-HP-Qi7" userLabel="Detail View Controller" customClass="DetailViewController" customModule="TheMovieDb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="3Oj-HP-Qi7" userLabel="Detail View Controller" customClass="DetailViewController" customModule="TheMovieDb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rAN-8O-5x3">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBA-ph-voO">
-                                <rect key="frame" x="174" y="777" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <segue destination="5XG-cU-Byf" kind="unwind" unwindAction="didUnwindFromHomeViewController:" id="TKV-7a-DtM"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="630" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8xj-p0-EOA" userLabel="Detail Table View">
-                                <rect key="frame" x="0.0" y="88" width="428" height="749"/>
+                                <rect key="frame" x="0.0" y="44" width="428" height="749"/>
                                 <color key="backgroundColor" red="0.02797043926" green="0.02797043926" blue="0.02797043926" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="749" id="gYl-kZ-fJU"/>
@@ -289,27 +279,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hLt-qQ-Jjq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="5XG-cU-Byf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1867.2897196261681" y="156.15550755939526"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fkk-ja-hBS">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mp2-QO-pwd" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6iK-AU-p4v">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="6FG-be-Y46" kind="relationship" relationship="rootViewController" id="9mt-H2-V0h"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3bS-3v-TOv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="162.31884057971016" y="156.69642857142856"/>
         </scene>
     </scenes>
     <resources>

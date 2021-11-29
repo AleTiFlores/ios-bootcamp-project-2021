@@ -8,6 +8,7 @@
 import UIKit
 
 final class HomeViewController: UIViewController {
+
     @IBOutlet private weak var tableView: UITableView!
     private let movieSections = ["Trending",
                                  "Now Playing",
@@ -20,7 +21,9 @@ final class HomeViewController: UIViewController {
                                            "\(MovieDbEndPoints.popularUrl)",
                                            "\(MovieDbEndPoints.topRatedUrl)",
                                            "\(MovieDbEndPoints.upcomingUrl)"]
-    private var searchResultViewController: SearchResultViewController?
+    
+    private var searchResultViewController: SearchResultViewController!
+    
     private var searchController: UISearchController!
     private var filteredMovies: [Movie] = []
     private var isSearchBarEmpty: Bool {
@@ -33,12 +36,12 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchResultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultViewController") as? SearchResultViewController
         
         tableView.delegate = self
         tableView.dataSource = self
         getMovies()
         title = "Alex Movies"
+        searchResultViewController = FactoryViewController.createSearchResultViewController()
         searchController = UISearchController(searchResultsController: searchResultViewController)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Movies"
@@ -48,7 +51,7 @@ final class HomeViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
-    
+     
     private func getMovies() {
         let downloadGroup = DispatchGroup()
         let queue = DispatchQueue(label: "com.gcd.dispatchGroup", attributes: .concurrent)
@@ -92,22 +95,13 @@ final class HomeViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      guard
-        segue.identifier == "ShowDetailSegue",
-        let categoryCollectionViewCell = sender as? CategoryCollectionViewCell,
-        let detailViewController = segue.destination as? DetailViewController
-        else { return }
-        detailViewController.movie = categoryCollectionViewCell.movie
-    }
-    
     func filterContentForSearchText(_ searchText: String) {
         let movies = movieList.flatMap {$0}
         let filteredMovies = movies.filter { movie in
             movie.title.localizedCaseInsensitiveContains(searchText)
         }
         
-        self.filteredMovies = filteredMovies.unique()
+        self.filteredMovies = filteredMovies
         print(self.filteredMovies)
     }
 }
@@ -133,6 +127,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.moviesList = movieList[indexPath.section]
+        cell.delegate = self
         return cell
     }
     
@@ -147,7 +142,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchResultViewController?.filteredMovies = filteredMovies
+        searchResultViewController.filteredMovies = filteredMovies
         filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
+extension HomeViewController: CategoryTableViewCellDelegate {
+    func collectionView(didSelectMovie movie: Movie) {
+        let detail = FactoryViewController.createDetailViewController(withMovie: movie)
+        show(detail, sender: nil)
     }
 }
