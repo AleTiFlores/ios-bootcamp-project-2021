@@ -9,6 +9,15 @@
           "revision": "318e319998bf555c3e914d5c3adb6da05af86a32",
           "version": "7.1.1"
         }
+      },
+      {
+        "package": "Reusable",
+        "repositoryURL": "https://github.com/AliSoftware/Reusable.git",
+        "state": {
+          "branch": "main",
+          "revision": "85e8ef7b2441433ffed2fc8cf4942961b70a83f6",
+          "version": null
+        }
       }
     ]
   },

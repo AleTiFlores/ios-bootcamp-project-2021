@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		644AEB1D2751C21000F9B02B /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644AEB1C2751C21000F9B02B /* SearchResultViewController.swift */; };
 		64EB881F274DFF7700970829 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB881E274DFF7700970829 /* SearchResultTableViewCell.swift */; };
+		81811D97275580E7008D7DFE /* Reusable in Frameworks */ = {isa = PBXBuildFile; productRef = 81811D96275580E7008D7DFE /* Reusable */; };
 		81C0A742275442A500C9AB0B /* FactoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A741275442A500C9AB0B /* FactoryViewController.swift */; };
 		837B4EA8258178B6003DFC67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B4EA7258178B6003DFC67 /* AppDelegate.swift */; };
 		837B4EAA258178B6003DFC67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B4EA9258178B6003DFC67 /* SceneDelegate.swift */; };
@@ -80,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA2BE15F273479F7005F31AD /* Kingfisher in Frameworks */,
+				81811D97275580E7008D7DFE /* Reusable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +256,7 @@
 			name = TheMovieDb;
 			packageProductDependencies = (
 				FA2BE15E273479F7005F31AD /* Kingfisher */,
+				81811D96275580E7008D7DFE /* Reusable */,
 			);
 			productName = TheMovieDb;
 			productReference = 837B4EA4258178B6003DFC67 /* TheMovieDb.app */;
@@ -328,6 +331,7 @@
 			mainGroup = 837B4E9B258178B6003DFC67;
 			packageReferences = (
 				FA2BE15D273479F7005F31AD /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				81811D95275580E6008D7DFE /* XCRemoteSwiftPackageReference "Reusable" */,
 			);
 			productRefGroup = 837B4EA5258178B6003DFC67 /* Products */;
 			projectDirPath = "";
@@ -738,6 +742,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		81811D95275580E6008D7DFE /* XCRemoteSwiftPackageReference "Reusable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/Reusable.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		FA2BE15D273479F7005F31AD /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -749,6 +761,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		81811D96275580E7008D7DFE /* Reusable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81811D95275580E6008D7DFE /* XCRemoteSwiftPackageReference "Reusable" */;
+			productName = Reusable;
+		};
 		FA2BE15E273479F7005F31AD /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FA2BE15D273479F7005F31AD /* XCRemoteSwiftPackageReference "Kingfisher" */;

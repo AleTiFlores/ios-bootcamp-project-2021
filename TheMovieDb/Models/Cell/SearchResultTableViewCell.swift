@@ -7,8 +7,9 @@
 
 import UIKit
 import Kingfisher
+import Reusable
 
-final class SearchResultTableViewCell: UITableViewCell {
+final class SearchResultTableViewCell: UITableViewCell, Reusable {
     @IBOutlet private weak var resultTitleLabel: UILabel!
     @IBOutlet private weak var resultImageView: UIImageView!
     

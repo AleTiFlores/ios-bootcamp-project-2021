@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Reusable
 
 protocol CategoryTableViewCellDelegate: AnyObject {
     func collectionView(didSelectMovie movie: Movie)
 }
 
-final class CategoryTableViewCell: UITableViewCell {
+final class CategoryTableViewCell: UITableViewCell, Reusable {
     
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
     

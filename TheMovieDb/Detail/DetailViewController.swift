@@ -37,7 +37,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
               let backdropPath = movie?.backdrop_path
         else { return  UITableViewCell() }
         
-        let movieDetail = MovieDetail(posterPath: posterPath, overview: overview, backgropPath: backdropPath)
+        let movieDetail = MovieDetail(posterPath: posterPath, overview: overview)
         cell.fillData(movie: movieDetail)
         
         return cell

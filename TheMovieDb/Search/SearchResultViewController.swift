@@ -30,10 +30,8 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultTableViewCell", for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
-        
+        let cell: SearchResultTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         cell.fillData(movie: filteredMovies[indexPath.row])
-
         return cell
     }
     

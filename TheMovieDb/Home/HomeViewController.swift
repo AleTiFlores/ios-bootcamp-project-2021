@@ -100,16 +100,7 @@ final class HomeViewController: UIViewController {
         let filteredMovies = movies.filter { movie in
             movie.title.localizedCaseInsensitiveContains(searchText)
         }
-        
         self.filteredMovies = filteredMovies
-        print(self.filteredMovies)
-    }
-}
-
-extension Sequence where Iterator.Element: Hashable {
-    func unique() -> [Iterator.Element] {
-        var seen: [Iterator.Element: Bool] = [:]
-        return self.filter { seen.updateValue(true, forKey: $0) == nil }
     }
 }
 
@@ -123,9 +114,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell") as? CategoryTableViewCell else {
-            return UITableViewCell()
-        }
+        let cell: CategoryTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         cell.moviesList = movieList[indexPath.section]
         cell.delegate = self
         return cell
