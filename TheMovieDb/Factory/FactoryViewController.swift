@@ -21,7 +21,7 @@ enum FactoryViewController {
     
     static func createDetailViewController(withMovie movie: Movie) -> DetailViewController {
         let controller: DetailViewController = createViewController()
-        controller.movie = movie
+        controller.detailViewModel.movie = movie
         return controller
     }
     

@@ -5,6 +5,11 @@
 //  Created by Alex on 11/4/21.
 
 import Foundation
+import os.log
+
+protocol MovieApiProtocol {
+    func performRequest(urlString: String, completion: @escaping (MoviesList?, Error?) -> Void)
+}
 
 enum NetworkError: Error {
     case badURL
@@ -20,18 +25,16 @@ enum MovieDbEndPoints {
     static let imagesBaseURL = "https://image.tmdb.org/t/p/w185"
 }
 
-struct GetMoviesAPI {
+struct MovieClient: MovieApiProtocol {
     private let baseURL = "https://api.themoviedb.org/3"
-
-    public func performRequest(urlString: String, completion: @escaping (MoviesList?, Error?) -> ()) {
+    
+    func performRequest(urlString: String, completion: @escaping (MoviesList?, Error?) -> Void) {
         
         guard let url = URL(string: baseURL + urlString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (sessionData, sessionResponse, error) in
+        URLSession.shared.dataTask(with: url) { (sessionData, _, error) in
             
             if let errorFound = error {
-                completion(nil, errorFound)
-                return
+                return completion(nil, errorFound)
             }
             
             guard let data = sessionData else { return }

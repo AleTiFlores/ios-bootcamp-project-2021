@@ -5,26 +5,36 @@
 //  Created by Alex on 11/3/21.
 //
 
-struct Movie: Codable {
+struct Movie: Codable, Hashable {
     let title: String
     let overview: String
-    let release_date: String
+    let releaseDate: String
     let adult: Bool
-    let backdrop_path: String?
+    let backdropPath: String?
     let id: Int
-    let original_language: String
-    let original_title: String
-    let poster_path: String?
-    let vote_count: Int
+    let originalLanguage: String
+    let originalTitle: String
+    let posterPath: String?
+    let voteCount: Int
     let video: Bool
-    let vote_average: Float
+    let voteAverage: Float
     let popularity: Float
-    let media_type: String?
-}
-
-extension Movie: Hashable {
-    static func ==(lhs: Movie, rhs: Movie) -> Bool {
-        
-        return lhs.title.trimmingCharacters(in: .whitespacesAndNewlines) == rhs.title.trimmingCharacters(in: .whitespacesAndNewlines)
+    let mediaType: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case title
+        case overview
+        case releaseDate = "release_date"
+        case adult
+        case backdropPath = "backdrop_path"
+        case id
+        case originalLanguage = "original_language"
+        case originalTitle = "original_title"
+        case posterPath = "poster_path"
+        case voteCount = "vote_count"
+        case video
+        case voteAverage = "vote_average"
+        case popularity
+        case mediaType = "media_type"
     }
 }

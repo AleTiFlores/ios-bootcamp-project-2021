@@ -7,8 +7,9 @@
 
 import UIKit
 import Kingfisher
+import Reusable
 
-final class CategoryCollectionViewCell: UICollectionViewCell {
+final class CategoryCollectionViewCell: UICollectionViewCell, Reusable {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     
@@ -16,7 +17,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     func fillData(movie: Movie) {
         
-        guard let posterPath = movie.poster_path else { return }
+        guard let posterPath = movie.posterPath else { return }
         let imageUrl = "https://image.tmdb.org/t/p/w185\(posterPath)"
         
         imageView.kf.setImage(with: URL(string: imageUrl))

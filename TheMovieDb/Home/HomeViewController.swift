@@ -10,17 +10,8 @@ import UIKit
 final class HomeViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
-    private let movieSections = ["Trending",
-                                 "Now Playing",
-                                 "Popular",
-                                 "Top Rated",
-                                 "Upcoming"]
-    private var movieList = [[Movie]]()
-    private let categoriesUrl: [String] = ["\(MovieDbEndPoints.trendingUrl)",
-                                           "\(MovieDbEndPoints.nowPlayingUrl)",
-                                           "\(MovieDbEndPoints.popularUrl)",
-                                           "\(MovieDbEndPoints.topRatedUrl)",
-                                           "\(MovieDbEndPoints.upcomingUrl)"]
+    
+    private let homeViewModel: HomeViewModel = HomeViewModel(client: MovieClient(), categories: Category.defaultCategories)
     
     private var searchResultViewController: SearchResultViewController!
     
@@ -39,8 +30,13 @@ final class HomeViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        getMovies()
+        homeViewModel.isLoading = { [weak self] in
+            self?.tableView.reloadData()
+        }
+        
+        homeViewModel.getMovies()
         title = "Alex Movies"
+        
         searchResultViewController = FactoryViewController.createSearchResultViewController()
         searchController = UISearchController(searchResultsController: searchResultViewController)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -48,65 +44,22 @@ final class HomeViewController: UIViewController {
         searchController.searchBar.delegate = self
         searchController.searchBar.backgroundColor = .black
         searchController.searchBar.searchTextField.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
         navigationItem.searchController = searchController
         definesPresentationContext = true
-    }
-     
-    private func getMovies() {
-        let downloadGroup = DispatchGroup()
-        let queue = DispatchQueue(label: "com.gcd.dispatchGroup", attributes: .concurrent)
-        
-        for (_, url) in categoriesUrl.enumerated() {
-            queue.async {
-                downloadGroup.enter()
-                self.getData(dataUrl: url) { (result) in
-                    switch result {
-                    case .success(let movies):
-                        self.movieList.append(movies)
-                        downloadGroup.leave()
-                    case .failure(let fail):
-                        debugPrint(fail)
-                        downloadGroup.leave()
-                    }
-                }
-            }
-        }
-    
-        downloadGroup.notify(queue: .main) {
-            self.tableView.reloadData()
-        }
-        downloadGroup.wait()
-    }
-    
-    private func getData(dataUrl: String,
-                         completion: @escaping(Result<[Movie], NetworkError>) -> Void) {
-        let getMoviesAPI = GetMoviesAPI()
-        getMoviesAPI.performRequest(urlString: dataUrl) { (requestData, requestError) in
-            if let requestError = requestError {
-                print("Error \(requestError)")
-                completion(.failure(.badURL))
-                return
-            }
-            guard let movies = requestData?.results else {
-                completion(.failure(.errorData))
-                return
-            }
-            completion(.success(movies))
-        }
+      
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        let movies = movieList.flatMap {$0}
-        let filteredMovies = movies.filter { movie in
-            movie.title.localizedCaseInsensitiveContains(searchText)
-        }
-        self.filteredMovies = filteredMovies
+        filteredMovies = homeViewModel.searchText(searchText)
     }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return movieList.count
+        return homeViewModel.categories.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,24 +68,33 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CategoryTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.moviesList = movieList[indexPath.section]
+        let category = homeViewModel.categories[indexPath.section]
+        cell.moviesList = category.movies	
         cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 80))
+        let label = UILabel(frame: CGRect(x: 12, y: 10, width: headerView.frame.size.width, height: 60))
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
-        label.text = movieSections[section]
+        label.text = homeViewModel.categories[section].name
         label.font = UIFont(name: "Charter", size: 28)
-        return label
+        
+        headerView.addSubview(label)
+        headerView.backgroundColor = .darkGray.withAlphaComponent(0.85)
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 80
     }
 }
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchResultViewController.filteredMovies = filteredMovies
-        filterContentForSearchText(searchController.searchBar.text!)
+        searchResultViewController.searchViewModel.filteredMovies = filteredMovies
+        filterContentForSearchText(searchText)
     }
 }
 

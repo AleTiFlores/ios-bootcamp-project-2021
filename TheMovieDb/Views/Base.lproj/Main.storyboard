@@ -86,7 +86,7 @@
         <!--Home View Controller-->
         <scene sceneID="R09-Ii-HDJ">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="6FG-be-Y46" customClass="HomeViewController" customModule="TheMovieDb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" extendedLayoutIncludesOpaqueBars="YES" id="6FG-be-Y46" customClass="HomeViewController" customModule="TheMovieDb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gbh-Lz-v1W">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,7 +106,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="428" height="340"/>
                                                     <color key="backgroundColor" red="0.02797043926" green="0.02797043926" blue="0.02797043926" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="340" id="GdR-ao-gWZ"/>
+                                                        <constraint firstAttribute="height" constant="360" id="GdR-ao-gWZ"/>
                                                     </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zRq-X4-DWq">
                                                         <size key="itemSize" width="219" height="300"/>
@@ -129,7 +129,7 @@
                                                                                 <rect key="frame" x="8" y="8" width="204" height="260"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="200" id="QbT-NE-rnc"/>
-                                                                                    <constraint firstAttribute="height" constant="270" id="hlq-UV-0jv"/>
+                                                                                    <constraint firstAttribute="height" constant="330" id="hlq-UV-0jv"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="T0J-hU-ely" userLabel="Movie Title">
@@ -198,14 +198,14 @@
                             <constraint firstItem="kFN-2t-3hV" firstAttribute="top" secondItem="Gbh-Lz-v1W" secondAttribute="top" id="yRG-Cu-AuY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="c7L-4x-TnL"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="tableView" destination="kFN-2t-3hV" id="vMb-K5-m49"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3pe-ig-iIR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1071.0144927536232" y="156.69642857142856"/>
+            <point key="canvasLocation" x="220" y="241"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="2AM-2w-7xX">

@@ -10,13 +10,13 @@ import UIKit
 
 final class DetailViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
-    var movie: Movie?
+    let detailViewModel: DetailViewModel = DetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        title = movie?.title
+        title = detailViewModel.movie?.title
     }
 }
 
@@ -30,11 +30,10 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailTableViewCell") as? DetailTableViewCell else { return UITableViewCell() }
-        
-        guard let posterPath = movie?.poster_path,
-              let overview = movie?.overview,
-              let backdropPath = movie?.backdrop_path
+        let cell: DetailTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        guard let posterPath = detailViewModel.movie?.posterPath,
+              let overview = detailViewModel.movie?.overview,
+              let backdropPath = detailViewModel.movie?.backdropPath
         else { return  UITableViewCell() }
         
         let movieDetail = MovieDetail(posterPath: posterPath, overview: overview)
@@ -46,7 +45,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.text = movie?.title
+        label.text = detailViewModel.movie?.title
         return label
     }
 }

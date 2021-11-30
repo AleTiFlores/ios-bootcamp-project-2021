@@ -7,8 +7,9 @@
 
 import UIKit
 import Kingfisher
+import Reusable
 
-final class DetailTableViewCell: UITableViewCell {
+final class DetailTableViewCell: UITableViewCell, Reusable {
     
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var headerImageView: UIImageView!

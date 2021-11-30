@@ -43,12 +43,9 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as? CategoryCollectionViewCell,
-              let movieList = moviesList else {
-            return UICollectionViewCell()
-        }
+        let cell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        guard let movieList = moviesList else { return UICollectionViewCell() }
         cell.fillData(movie: movieList[indexPath.row])
-        
         return cell
     }
     
