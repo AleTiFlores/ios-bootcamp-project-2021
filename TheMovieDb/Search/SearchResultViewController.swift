@@ -36,7 +36,7 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detail = FactoryViewController.createDetailViewController(withMovie: searchViewModel.filteredMovies[indexPath.row])
+        let detail = FactoryViewController.createSwiftUIHostingController(withMovie: searchViewModel.filteredMovies[indexPath.row])
         show(detail, sender: nil)
     }
 }

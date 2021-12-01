@@ -7,6 +7,7 @@
 
 import Foundation
 import os.log
+import Combine
 
 protocol HomeViewModelDelegate: AnyObject {
     var isLoading: (() -> Void)? { get }
@@ -21,23 +22,21 @@ struct Category: Hashable {
     let path: String
     var movies: [Movie]
     
-    static let defaultCategories =  [Category(name: "Trending", path: MovieDbEndPoints.trendingUrl, movies: []),
-                                 Category(name: "Top Rated", path: MovieDbEndPoints.topRatedUrl, movies: []),
-                                 Category(name: "Upcoming", path: MovieDbEndPoints.upcomingUrl, movies: []),
-                                 Category(name: "Now Playing", path: MovieDbEndPoints.nowPlayingUrl, movies: []),
-                                 Category(name: "Popular", path: MovieDbEndPoints.popularUrl, movies: [])]
+    static let defaultCategories = [Category(name: "Trending", path: MovieDbEndPoints.trendingUrl, movies: []),
+                                    Category(name: "Top Rated", path: MovieDbEndPoints.topRatedUrl, movies: []),
+                                    Category(name: "Upcoming", path: MovieDbEndPoints.upcomingUrl, movies: []),
+                                    Category(name: "Now Playing", path: MovieDbEndPoints.nowPlayingUrl, movies: []),
+                                    Category(name: "Popular", path: MovieDbEndPoints.popularUrl, movies: [])]
 }
 
 final class HomeViewModel: HomeViewModelDelegate {
     var hasError: ((Error) -> Void)?
-    
     var isLoading: (() -> Void)?
-    
     let client: MovieApiProtocol
-    
     var categories: [Category]
+    var cancellable: AnyCancellable?
     
-    init(client: MovieApiProtocol, categories:[Category]) {
+    init(client: MovieApiProtocol, categories: [Category]) {
         self.client = client
         self.categories =  categories
     }

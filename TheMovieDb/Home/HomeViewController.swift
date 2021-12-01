@@ -11,39 +11,41 @@ final class HomeViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     
-    private let homeViewModel: HomeViewModel = HomeViewModel(client: MovieClient(), categories: Category.defaultCategories)
+    private var searchResultViewController: SearchResultViewController?
     
-    private var searchResultViewController: SearchResultViewController!
+    private var searchController: UISearchController?
     
-    private var searchController: UISearchController!
     private var filteredMovies: [Movie] = []
+    
     private var isSearchBarEmpty: Bool {
-      return searchController.searchBar.text?.isEmpty ?? true
+      return searchController?.searchBar.text?.isEmpty ?? true
     }
     
     private var isFiltering: Bool {
-      return searchController.isActive && !isSearchBarEmpty
+        return (searchController?.isActive ?? false) && !isSearchBarEmpty
     }
+    
+    var homeViewModel: HomeViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-        homeViewModel.isLoading = { [weak self] in
+        homeViewModel?.isLoading = { [weak self] in
             self?.tableView.reloadData()
         }
         
-        homeViewModel.getMovies()
+        homeViewModel?.getMovies()
         title = "Alex Movies"
         
         searchResultViewController = FactoryViewController.createSearchResultViewController()
         searchController = UISearchController(searchResultsController: searchResultViewController)
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Movies"
-        searchController.searchBar.delegate = self
-        searchController.searchBar.backgroundColor = .black
-        searchController.searchBar.searchTextField.backgroundColor = .white
+        searchController?.obscuresBackgroundDuringPresentation = false
+        searchController?.searchBar.placeholder = "Search Movies"
+        searchController?.searchBar.delegate = self
+        searchController?.searchBar.backgroundColor = .black
+        searchController?.searchBar.searchTextField.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
@@ -53,13 +55,14 @@ final class HomeViewController: UIViewController {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredMovies = homeViewModel.searchText(searchText)
+        guard let value = homeViewModel?.searchText(searchText) else { return }
+        filteredMovies = value
     }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return homeViewModel.categories.count
+        return homeViewModel?.categories.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,9 +71,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CategoryTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        let category = homeViewModel.categories[indexPath.section]
-        cell.moviesList = category.movies	
         cell.delegate = self
+        if let category = homeViewModel?.categories[indexPath.section] {
+            cell.moviesList = category.movies
+        }
+        
         return cell
     }
     
@@ -78,7 +83,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 80))
         let label = UILabel(frame: CGRect(x: 12, y: 10, width: headerView.frame.size.width, height: 60))
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
-        label.text = homeViewModel.categories[section].name
+        label.text = homeViewModel?.categories[section].name
         label.font = UIFont(name: "Charter", size: 28)
         
         headerView.addSubview(label)
@@ -93,14 +98,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchResultViewController.searchViewModel.filteredMovies = filteredMovies
+        searchResultViewController?.searchViewModel.filteredMovies = filteredMovies
         filterContentForSearchText(searchText)
     }
 }
 
 extension HomeViewController: CategoryTableViewCellDelegate {
     func collectionView(didSelectMovie movie: Movie) {
-        let detail = FactoryViewController.createDetailViewController(withMovie: movie)
-        show(detail, sender: nil)
+    let detail = FactoryViewController.createSwiftUIHostingController(withMovie: movie)
+    show(detail, sender: nil)
     }
 }

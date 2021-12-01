@@ -16,6 +16,7 @@ enum FactoryViewController {
     
     static func createHomeViewController() -> HomeViewController {
         let controller: HomeViewController = createViewController()
+        controller.homeViewModel = HomeViewModel(client: MovieClient(), categories: Category.defaultCategories)
         return controller
     }
     
@@ -27,6 +28,11 @@ enum FactoryViewController {
     
     static func createSearchResultViewController() -> SearchResultViewController {
         let controller: SearchResultViewController = createViewController()
+        return controller
+    }
+    
+    static func createSwiftUIHostingController(withMovie movie: Movie) -> DetailViewSwiftUI {
+        let controller = DetailViewSwiftUI(movie: movie)
         return controller
     }
     
