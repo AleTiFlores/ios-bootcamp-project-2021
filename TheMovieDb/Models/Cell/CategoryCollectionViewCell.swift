@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import Kingfisher
 import Reusable
+import Combine
 
 final class CategoryCollectionViewCell: UICollectionViewCell, Reusable {
     @IBOutlet private weak var imageView: UIImageView!
@@ -20,7 +20,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell, Reusable {
         guard let posterPath = movie.posterPath else { return }
         let imageUrl = "https://image.tmdb.org/t/p/w185\(posterPath)"
         
-        imageView.kf.setImage(with: URL(string: imageUrl))
+        imageView.loadImage(urlString: imageUrl)
         titleLabel.text = movie.title
         self.movie = movie
     }

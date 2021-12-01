@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 import Reusable
 
 final class DetailTableViewCell: UITableViewCell, Reusable {
@@ -16,9 +15,8 @@ final class DetailTableViewCell: UITableViewCell, Reusable {
     
     func fillData(movie: MovieDetail?) {
         descriptionLabel.text = movie?.overview
-        if let poster_path = movie?.poster_path,
-            let url = URL(string: "\(MovieDbEndPoints.imagesBaseURL)\(poster_path)") {
-            headerImageView.kf.setImage(with: url)
+        if let poster_path = movie?.poster_path {
+            headerImageView.loadImage(urlString: "\(MovieDbEndPoints.imagesBaseURL)\(poster_path)")
         }
     }
 }
