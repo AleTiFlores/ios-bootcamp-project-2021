@@ -5,7 +5,6 @@
 //  Created by Alex on 11/4/21.
 
 import Foundation
-import os.log
 
 struct MovieClient: MovieApiProtocol {
     

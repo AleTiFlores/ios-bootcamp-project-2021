@@ -20,12 +20,6 @@ enum FactoryViewController {
         return controller
     }
     
-    static func createDetailViewController(withMovie movie: Movie) -> DetailViewController {
-        let controller: DetailViewController = createViewController()
-        controller.detailViewModel.movie = movie
-        return controller
-    }
-    
     static func createSearchResultViewController() -> SearchResultViewController {
         let controller: SearchResultViewController = createViewController()
         return controller
