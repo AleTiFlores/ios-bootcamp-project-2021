@@ -51,7 +51,7 @@ final class HomeViewModelTests: XCTestCase {
     
     func test_mockGetMoviesTrending() {
         HomeViewModelTests.resource = "Trending"
-        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [])
+        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [], color: UIColor.customRed)
         viewModel = HomeViewModel(client: MockMovieClient(), categories: [category])
         
         let expectation = expectation(description: "Expected categories")
@@ -71,7 +71,7 @@ final class HomeViewModelTests: XCTestCase {
     
     func test_mockGetMoviesTopRated() {
         HomeViewModelTests.resource = "TopRated"
-        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [])
+        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [], color: UIColor.customGreen)
         viewModel = HomeViewModel(client: MockMovieClient(), categories: [category])
       
         let expectation = expectation(description: "Expected categories")
@@ -91,7 +91,7 @@ final class HomeViewModelTests: XCTestCase {
     
     func test_mockGetMoviesUpcoming() {
         HomeViewModelTests.resource = "Upcoming"
-        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [])
+        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [], color: UIColor.customBlue)
         viewModel = HomeViewModel(client: MockMovieClient(), categories: [category])
         
         let expectation = expectation(description: "Expected categories")
@@ -111,7 +111,7 @@ final class HomeViewModelTests: XCTestCase {
     
     func test_mockGetMoviesNowPlaying() {
         HomeViewModelTests.resource = "NowPlaying"
-        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [])
+        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [], color: UIColor.customPurple)
         viewModel = HomeViewModel(client: MockMovieClient(), categories: [category])
        
         let expectation = expectation(description: "Expected categories")
@@ -131,7 +131,7 @@ final class HomeViewModelTests: XCTestCase {
     
     func test_mockGetMoviesPopular() {
         HomeViewModelTests.resource = "Popular"
-        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [])
+        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [], color: UIColor.customGray)
         viewModel = HomeViewModel(client: MockMovieClient(), categories: [category])
        
         let expectation = expectation(description: "Expected categories")
@@ -151,7 +151,7 @@ final class HomeViewModelTests: XCTestCase {
     
     func test_mockGetMoviesError() {
         HomeViewModelTests.resource = "Error"
-        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [])
+        let category = Category(name: HomeViewModelTests.resource, path: MovieDbEndPoints.trendingUrl, movies: [], color: UIColor.systemPink)
         viewModel = HomeViewModel(client: MockMovieClient(), categories: [category])
        
         let expectation = expectation(description: "Expected error")
