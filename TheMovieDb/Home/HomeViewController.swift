@@ -87,7 +87,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         label.font = UIFont(name: "Charter", size: 28)
         
         headerView.addSubview(label)
-        headerView.backgroundColor = .darkGray.withAlphaComponent(0.85)
+        headerView.backgroundColor = homeViewModel?.categories[section].color
         return headerView
     }
     

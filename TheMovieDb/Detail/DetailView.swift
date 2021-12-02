@@ -11,6 +11,9 @@ import Kingfisher
 struct DetailView: View {
     var poster: String?
     var description: String?
+    var title: String?
+    var year: String?
+    var voteAverage: String?
     
     var body: some View {
         ZStack {
@@ -22,19 +25,38 @@ struct DetailView: View {
                     KFImage(URL(string: "\(MovieDbEndPoints.imagesBaseURL)\(poster ?? "")"))
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 300, height: 400)
+                        .frame(width: 320, height: 380)
                     Spacer()
                 }
-                .offset(y: -20)
-            
+                
+                HStack {
+                    Text(title ?? "")
+                        .bold()
+                    Text(year ?? "")
+                }
+                .foregroundColor(Color.white)
+                .font(.largeTitle)
+                .padding()
+                
+                HStack {
+                    Text("Vote Average")
+                        .font(.title2)
+    
+                    Text(voteAverage ?? "")
+                        .font(.title)
+                }
+                .foregroundColor(Color.white)
+                .padding()
+                .offset(y: -40)
+
                 Text(description ?? "")
                     .font(.body)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.leading)
+                    .padding()
+                    .offset(y: -60)
                 Spacer()
             }
-            .padding()
-            .padding(.horizontal)
         }
     }
 }

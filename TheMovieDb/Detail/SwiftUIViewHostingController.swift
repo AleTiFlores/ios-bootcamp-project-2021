@@ -13,7 +13,8 @@ class DetailViewSwiftUI: UIViewController {
     private let movie: Movie
     
     lazy var container: UIHostingController<DetailView> = {
-        let container = UIHostingController(rootView: DetailView(poster: movie.posterPath, description: movie.overview))
+        let year = "(\(movie.releaseDate.components(separatedBy: "-")[0]))"
+        let container = UIHostingController(rootView: DetailView(poster: movie.posterPath, description: movie.overview, title: movie.title, year: year, voteAverage: "\(movie.voteAverage)"))
       return container
     }()
     

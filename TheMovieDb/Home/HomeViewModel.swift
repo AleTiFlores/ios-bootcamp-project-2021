@@ -8,6 +8,7 @@
 import Foundation
 import os.log
 import Combine
+import UIKit
 
 protocol HomeViewModelDelegate: AnyObject {
     var isLoading: (() -> Void)? { get }
@@ -21,12 +22,13 @@ struct Category: Hashable {
     let name: String
     let path: String
     var movies: [Movie]
+    let color: UIColor
     
-    static let defaultCategories = [Category(name: "Trending", path: MovieDbEndPoints.trendingUrl, movies: []),
-                                    Category(name: "Top Rated", path: MovieDbEndPoints.topRatedUrl, movies: []),
-                                    Category(name: "Upcoming", path: MovieDbEndPoints.upcomingUrl, movies: []),
-                                    Category(name: "Now Playing", path: MovieDbEndPoints.nowPlayingUrl, movies: []),
-                                    Category(name: "Popular", path: MovieDbEndPoints.popularUrl, movies: [])]
+    static let defaultCategories = [Category(name: "Trending", path: MovieDbEndPoints.trendingUrl, movies: [], color: UIColor.customRed),
+                                    Category(name: "Top Rated", path: MovieDbEndPoints.topRatedUrl, movies: [], color: UIColor.customGreen),
+                                    Category(name: "Upcoming", path: MovieDbEndPoints.upcomingUrl, movies: [], color: UIColor.customBlue),
+                                    Category(name: "Now Playing", path: MovieDbEndPoints.nowPlayingUrl, movies: [], color: UIColor.customPurple),
+                                    Category(name: "Popular", path: MovieDbEndPoints.popularUrl, movies: [], color: UIColor.customGray)]
 }
 
 final class HomeViewModel: HomeViewModelDelegate {

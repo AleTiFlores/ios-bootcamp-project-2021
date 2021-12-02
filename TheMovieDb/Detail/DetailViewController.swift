@@ -33,10 +33,13 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: DetailTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         guard let posterPath = detailViewModel.movie?.posterPath,
               let overview = detailViewModel.movie?.overview,
-              let backdropPath = detailViewModel.movie?.backdropPath
+              let title = detailViewModel.movie?.title,
+              let releaseDate = detailViewModel.movie?.releaseDate,
+              let voteAverage = detailViewModel.movie?.voteAverage
         else { return  UITableViewCell() }
+        let year = releaseDate.components(separatedBy: "-")[0]
         
-        let movieDetail = MovieDetail(posterPath: posterPath, overview: overview)
+        let movieDetail = MovieDetail(posterPath: posterPath, overview: overview, title: title, year: year, rate: "\(voteAverage)")
         cell.fillData(movie: movieDetail)
         
         return cell
