@@ -22,6 +22,7 @@ enum FactoryViewController {
     
     static func createSearchResultViewController() -> SearchResultViewController {
         let controller: SearchResultViewController = createViewController()
+        controller.searchViewModel = SearchViewModel()
         return controller
     }
     

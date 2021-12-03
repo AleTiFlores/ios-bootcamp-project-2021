@@ -26,6 +26,7 @@ final class HomeViewController: UIViewController {
     }
     
     var homeViewModel: HomeViewModel?
+    var searchViewModel: SearchViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,6 @@ final class HomeViewController: UIViewController {
         
         navigationItem.searchController = searchController
         definesPresentationContext = true
-      
     }
     
     func filterContentForSearchText(_ searchText: String) {
@@ -98,7 +98,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchResultViewController?.searchViewModel.filteredMovies = filteredMovies
+        searchResultViewController?.searchViewModel?.filteredMovies = filteredMovies
         filterContentForSearchText(searchText)
     }
 }
