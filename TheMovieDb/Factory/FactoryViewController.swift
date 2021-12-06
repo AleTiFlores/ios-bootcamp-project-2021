@@ -16,7 +16,7 @@ enum FactoryViewController {
     
     static func createHomeViewController() -> HomeViewController {
         let controller: HomeViewController = createViewController()
-        controller.homeViewModel = HomeViewModel(client: MovieClient(), categories: Category.defaultCategories)
+        controller.homeViewModel = HomeViewModel(client: MovieCombineClient(), categories: Category.defaultCategories)
         return controller
     }
     
